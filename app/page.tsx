@@ -1,6 +1,6 @@
 "use client";
 
-import Footer from "@/components/organisms/footer";
+import { Footer } from "@/components/organisms/footer";
 import Hero from "@/components/organisms/hero";
 import ApartmentGrid from "@/components/organisms/property/apartment-grid";
 import LandForSale from "@/components/organisms/property/land-for-sale";

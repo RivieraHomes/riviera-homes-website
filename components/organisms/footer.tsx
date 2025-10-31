@@ -1,145 +1,194 @@
-import { LuInstagram, LuMessageCircle } from "react-icons/lu";
-import { FaTiktok } from "react-icons/fa";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaTelegramPlane,
+  FaChevronRight,
+  FaTiktok,
+} from "react-icons/fa";
+import { PiPhoneThin } from "react-icons/pi";
+import { CiMail, CiLocationOn } from "react-icons/ci";
+import { MdEmail } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
+import Logo from "@/assets/images/riviera-homes-logo.jpg";
 
-function Footer() {
-  const socialLinks = [
-    {
-      name: "TikTok",
-      url: "https://www.tiktok.com/@rivierahomes9ja?_t=ZS-90v6Oo0pewq&_r=1",
-      icon: FaTiktok,
-      color: "hover:text-black",
-    },
-    {
-      name: "Instagram",
-      url: "https://www.instagram.com/Rivierahomes_",
-      icon: LuInstagram,
-      color: "hover:text-pink-500",
-    },
-    {
-      name: "WhatsApp",
-      url: "https://wa.me/+2349033261767",
-      icon: LuMessageCircle,
-      color: "hover:text-green-500",
-    },
-  ];
+export interface FooterProps {
+  className?: string;
+}
 
+export function Footer({ className }: FooterProps) {
   return (
-    <footer className="bg-navy-900 text-white py-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          {/* Company Info */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Riviera Homes</h3>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Your trusted partner for premium shortlet rentals and land
-              investments in Lagos, Nigeria.
-            </p>
+    <footer
+      className={`bg-white pt-24 lg:pt-48 pb-14 lg:pb-12 px-4 md:px-12 lg:px-32 ${className}`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="col-span-1 flex flex-col items-center">
+            <Image
+              src={Logo}
+              alt="Riviera Homes Real Estate"
+              width={132}
+              height={132}
+              className="mb-6"
+            />
+            <div className="flex space-x-4">
+              <Link
+                href="https://www.tiktok.com/@rivierahomes9ja?_t=ZS-90v6Oo0pewq&_r=1"
+                target="_blank"
+                className="text-[#006B05] hover:text-[#005004] transition-colors"
+              >
+                <FaTiktok size={20} />
+              </Link>
+              <Link
+                href="https://www.instagram.com/Rivierahomes_/"
+                className="text-[#006B05] hover:text-[#005004] transition-colors"
+                target="_blank"
+              >
+                <FaInstagram size={20} />
+              </Link>
+              <Link
+                href="mailto:rivierahomesltd@gmail.com"
+                className="text-[#006B05] hover:text-[#005004] transition-colors"
+              >
+                <MdEmail size={20} />
+              </Link>
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+          <div className="col-span-1">
+            <h3 className="text-lg font-semibold text-gray-700 mb-4">
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
               <li>
-                <a
+                <Link
                   href="/"
-                  className="text-gray-300 hover:text-gold-400 transition-colors"
+                  className="text-gray-600 hover:text-[#006B05] transition-colors"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/about-us"
-                  className="text-gray-300 hover:text-gold-400 transition-colors"
+                  className="text-gray-600 hover:text-[#006B05] transition-colors"
                 >
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#featured"
-                  className="text-gray-300 hover:text-gold-400 transition-colors"
+                <Link
+                  href="/properties"
+                  className="text-gray-600 hover:text-[#006B05] transition-colors"
                 >
-                  Featured Apartments
-                </a>
+                  Properties
+                </Link>
               </li>
               <li>
-                <a
-                  href="#land-for-sale"
-                  className="text-gray-300 hover:text-gold-400 transition-colors"
+                <Link
+                  href="#"
+                  className="text-gray-600 hover:text-[#006B05] transition-colors"
                 >
-                  Land for Sale
-                </a>
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-gray-600 hover:text-[#006B05] transition-colors"
+                >
+                  Contact Us
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-            <ul className="space-y-2 text-sm text-gray-300">
+          <div className="col-span-1">
+            <h3 className="text-lg font-semibold text-gray-700 mb-4">
+              Properties
+            </h3>
+            <ul className="space-y-3">
               <li>
-                <a
-                  href="tel:+2349033261767"
-                  className="hover:text-gold-400 transition-colors"
+                <Link
+                  href="/properties?propertyType=residential"
+                  className="text-gray-600 hover:text-[#006B05] transition-colors flex items-center group"
                 >
-                  +234 903 326 1767
-                </a>
+                  <FaChevronRight className="mr-2 text-xs text-[#006B05]" />
+                  Residential
+                </Link>
               </li>
               <li>
-                <a
-                  href="mailto:rivierahomesltd@gmail.com"
-                  className="hover:text-gold-400 transition-colors"
+                <Link
+                  href="/properties?propertyType=rentals"
+                  className="text-gray-600 hover:text-[#006B05] transition-colors flex items-center group"
                 >
-                  rivierahomesltd@gmail.com
-                </a>
+                  <FaChevronRight className="mr-2 text-xs text-[#006B05]" />
+                  Rentals
+                </Link>
               </li>
-              <li className="pt-4">
-                <a
-                  href="https://wa.me/2349033261767"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors font-medium"
+              <li>
+                <Link
+                  href="/properties?propertyType=short-lets"
+                  className="text-gray-600 hover:text-[#006B05] transition-colors flex items-center group"
                 >
-                  <LuMessageCircle className="w-4 h-4" />
-                  Chat on WhatsApp
-                </a>
+                  <FaChevronRight className="mr-2 text-xs text-[#006B05]" />
+                  Short lets
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/properties?propertyType=commercial-properties"
+                  className="text-gray-600 hover:text-[#006B05] transition-colors flex items-center group"
+                >
+                  <FaChevronRight className="mr-2 text-xs text-[#006B05]" />
+                  Commercial properties
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/properties?propertyType=land"
+                  className="text-gray-600 hover:text-[#006B05] transition-colors flex items-center group"
+                >
+                  <FaChevronRight className="mr-2 text-xs text-[#006B05]" />
+                  Land
+                </Link>
               </li>
             </ul>
           </div>
-        </div>
 
-        {/* Social Media Links */}
-        <div className="border-t border-gray-700 pt-8 mb-8">
-          <h3 className="text-center text-lg font-bold mb-6">Follow Us</h3>
-          <div className="flex flex-wrap justify-center gap-6">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`text-gray-300 transition-all duration-300 transform hover:scale-110 ${social.color}`}
-                aria-label={`Follow us on ${social.name}`}
-              >
-                {typeof social.icon === "string" ? (
-                  <span className="text-2xl">{social.icon}</span>
-                ) : (
-                  <social.icon className="w-6 h-6" />
-                )}
-              </a>
-            ))}
+          <div className="col-span-1">
+            <h3 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2">
+              Contact Us
+            </h3>
+            <div className="space-y-3">
+              <div>
+                <p className="text-gray-700 flex items-center gap-2 mb-1">
+                  <FaWhatsapp className="text-lg" />
+                  <span>WhatsApp</span>
+                </p>
+                <p className="text-gray-600">+234 903 326 1767</p>
+              </div>
+              <div>
+                <p className="text-gray-700 flex items-center gap-2 mb-1">
+                  <CiLocationOn className="text-lg" />
+                  Head office:
+                </p>
+                <p className="text-gray-600">
+                  12, Awonaike Crescent, Yaba, Lagos
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Copyright */}
-        <p className="text-center text-sm text-gray-400">
-          &copy; {new Date().getFullYear()} Riviera Homes. All rights reserved.
-        </p>
+        <div className="border-t border-gray-200 mt-12 pt-8">
+          <p className="text-gray-600 text-sm">
+            All Rights Reserved . Copyright © 2025 Riviera Homes
+          </p>
+        </div>
       </div>
     </footer>
   );
 }
-
-export default Footer;

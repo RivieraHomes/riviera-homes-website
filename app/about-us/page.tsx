@@ -1,6 +1,6 @@
 "use client";
 
-import Footer from "@/components/organisms/footer";
+import { Footer } from "@/components/organisms/footer";
 import {
   LuShield,
   LuUsers,
