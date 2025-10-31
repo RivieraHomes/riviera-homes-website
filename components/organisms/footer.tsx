@@ -1,16 +1,17 @@
 import { LuInstagram, LuMessageCircle } from "react-icons/lu";
+import { FaTiktok } from "react-icons/fa";
 
 function Footer() {
   const socialLinks = [
     {
       name: "TikTok",
-      url: "https://www.tiktok.com/@rivierahomes9ja",
-      icon: "🎵",
+      url: "https://www.tiktok.com/@rivierahomes9ja?_t=ZS-90v6Oo0pewq&_r=1",
+      icon: FaTiktok,
       color: "hover:text-black",
     },
     {
       name: "Instagram",
-      url: "https://www.instagram.com/rivierahomes",
+      url: "https://www.instagram.com/Rivierahomes_",
       icon: LuInstagram,
       color: "hover:text-pink-500",
     },
@@ -80,23 +81,23 @@ function Footer() {
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
                 <a
-                  href="tel:+2348123456789"
+                  href="tel:+2349033261767"
                   className="hover:text-gold-400 transition-colors"
                 >
-                  +234 812 345 6789
+                  +234 903 326 1767
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:info@rivierahomes.com"
+                  href="mailto:rivierahomesltd@gmail.com"
                   className="hover:text-gold-400 transition-colors"
                 >
-                  info@rivierahomes.com
+                  rivierahomesltd@gmail.com
                 </a>
               </li>
               <li className="pt-4">
                 <a
-                  href="https://wa.me/2348123456789"
+                  href="https://wa.me/2349033261767"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors font-medium"

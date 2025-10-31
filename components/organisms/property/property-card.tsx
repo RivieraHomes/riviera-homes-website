@@ -33,7 +33,7 @@ export default function PropertyCard({
       onInquire(title);
     } else {
       const message = `Hi! I'm interested in "${title}". Could you please provide more details?`;
-      const whatsappUrl = `https://wa.me/2348123456789?text=${encodeURIComponent(
+      const whatsappUrl = `https://wa.me/2349033261767?text=${encodeURIComponent(
         message
       )}`;
       window.open(whatsappUrl, "_blank");

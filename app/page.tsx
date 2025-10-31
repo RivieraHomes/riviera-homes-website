@@ -101,7 +101,7 @@ export default function ShortletRental() {
 
   const handleContactHost = (apartmentTitle: string) => {
     const message = `Hi! I'm interested in booking "${apartmentTitle}". Could you please provide more details?`;
-    const whatsappUrl = `https://wa.me/2348123456789?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/2349033261767?text=${encodeURIComponent(
       message
     )}`;
     window.open(whatsappUrl, "_blank");
@@ -189,7 +189,7 @@ export default function ShortletRental() {
 
       {/* Floating WhatsApp Button */}
       <button
-        onClick={() => window.open("https://wa.me/2348123456789", "_blank")}
+        onClick={() => window.open("https://wa.me/2349033261767", "_blank")}
         className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 animate-pulse z-50"
         aria-label="Contact us on WhatsApp"
       >

@@ -85,7 +85,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="flex-1 relative bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 min-h-[35vh] lg:min-h-screen order-1 lg:order-2">
+      <div className="flex-1 relative bg-linear-to-br from-navy-900 via-navy-800 to-navy-700 min-h-[35vh] lg:min-h-screen order-1 lg:order-2">
         <div
           className="absolute inset-0 opacity-80"
           style={{
@@ -103,7 +103,7 @@ export default function Hero() {
             >
               About us
             </a>
-            <button className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
+            <button className="lg:hidden bg-white/20 backdrop-blur-sm rounded-lg p-2">
               <LuMenu className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
             </button>
           </div>
