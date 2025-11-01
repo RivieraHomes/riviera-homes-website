@@ -47,7 +47,7 @@ export default function Hero() {
     { href: "/", label: "Home" },
     { href: "/about-us", label: "About Us" },
     { href: "/properties", label: "Properties", hasSubmenu: true },
-    { href: "/contact", label: "Contact Us" },
+    { href: "/contact-us", label: "Contact Us" },
   ];
 
   const goToSlide = (index: number) => {
@@ -136,7 +136,7 @@ export default function Hero() {
               alt="Riviera Homes"
               width={100}
               height={100}
-              className="w-16 h-16 sm:w-20 sm:h-20"
+              className="w-24 h-24 sm:w-24 sm:h-20"
             />
           </Link>
           <button
