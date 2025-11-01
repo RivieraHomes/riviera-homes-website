@@ -12,8 +12,10 @@ import {
   LuHeart,
   LuBuilding,
   LuShieldCheck,
+  LuArrowLeft,
 } from "react-icons/lu";
 import { motion, Variants } from "framer-motion";
+import Link from "next/link";
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -58,6 +60,17 @@ export default function AboutUs() {
           }}
           aria-hidden="true"
         ></div>
+
+        {/* Back to Home Button */}
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-white hover:text-earth-yellow-400 transition-colors group"
+          >
+            <LuArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
+            <span className="font-medium">Back to Home</span>
+          </Link>
+        </div>
 
         <div className="relative max-w-7xl mx-auto z-10 px-4 sm:px-6 lg:px-8">
           <motion.div
