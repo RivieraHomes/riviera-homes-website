@@ -1,4 +1,4 @@
-import Logo from "@/assets/images/riviera-homes-logo.jpg";
+import Logo from "@/assets/images/riviera-logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { CiLocationOn } from "react-icons/ci";
