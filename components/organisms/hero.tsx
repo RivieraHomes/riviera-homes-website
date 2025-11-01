@@ -3,16 +3,23 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { LuMenu } from "react-icons/lu";
+import Image from "next/image";
+import Logo from "@/assets/images/riviera-logo.png";
 
 export default function Hero() {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
-      <div className="flex-1 bg-slate-100 flex flex-col justify-center px-4 sm:px-6 md:px-8 lg:px-16 py-12 lg:py-0 order-2 lg:order-1">
+      <div className="flex-1 bg-white flex flex-col justify-center px-4 sm:px-6 md:px-8 lg:px-16 py-12 lg:py-0 order-2 lg:order-1">
         <div className="max-w-lg mx-auto lg:mx-0">
           <div className="mb-6 lg:mb-8">
-            <h1 className="text-xl sm:text-2xl font-bold text-black">
-              Riviera Homes
-            </h1>
+            <Image
+              src={Logo}
+              alt="Riviera Homes"
+              width={120}
+              height={120}
+              className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32"
+              priority
+            />
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 lg:mb-6 leading-tight">
@@ -98,16 +105,20 @@ export default function Hero() {
         />
 
         <nav className="relative z-10 p-4 sm:p-6 lg:p-8">
-          <div className="flex items-center justify-end gap-4 sm:gap-8">
-            <Link
-              href="/about-us"
-              className="text-white hover:text-gold-400 font-medium transition-colors text-sm sm:text-base"
-            >
-              About us
-            </Link>
-            <button className="lg:hidden bg-white/20 backdrop-blur-sm rounded-lg p-2">
-              <LuMenu className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
-            </button>
+          <div className="flex items-center justify-between gap-4 sm:gap-8">
+            <div></div>
+
+            <div className="flex items-center gap-4 sm:gap-8">
+              <Link
+                href="/about-us"
+                className="text-white hover:text-gold-400 font-medium transition-colors text-sm sm:text-base"
+              >
+                About us
+              </Link>
+              <button className="lg:hidden bg-white/20 backdrop-blur-sm rounded-lg p-2">
+                <LuMenu className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+              </button>
+            </div>
           </div>
         </nav>
 
