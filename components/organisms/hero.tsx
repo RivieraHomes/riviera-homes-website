@@ -2,16 +2,123 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { LuMenu } from "react-icons/lu";
+import { LuMenu, LuX, LuChevronDown } from "react-icons/lu";
 import Image from "next/image";
 import Logo from "@/assets/images/riviera-logo.png";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Hero() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenuOpen]);
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about-us", label: "About Us" },
+    { href: "/properties", label: "Properties", hasSubmenu: true },
+    { href: "/contact", label: "Contact Us" },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row">
-      <div className="flex-1 bg-white flex flex-col justify-center px-4 sm:px-6 md:px-8 lg:px-16 py-12 lg:py-0 order-2 lg:order-1">
+    <div className="min-h-screen flex flex-col lg:flex-row relative">
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={() => setMobileMenuOpen(false)}
+          ></div>
+
+          {/* Menu Content */}
+          <div className="absolute inset-y-0 left-0 w-full bg-white shadow-xl">
+            {/* Header with Logo and Close Button */}
+            <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
+              <div className="flex items-center gap-3">
+                <Image
+                  src={Logo}
+                  alt="Riviera Homes"
+                  width={50}
+                  height={50}
+                  className="w-12 h-12"
+                />
+                <span className="font-bold text-lg text-slate-gray-900">
+                  Riviera Homes
+                </span>
+              </div>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 bg-slate-gray-900 rounded-lg hover:bg-slate-gray-800 transition-colors"
+                aria-label="Close menu"
+              >
+                <LuX className="w-6 h-6 text-white" />
+              </button>
+            </div>
+
+            {/* Navigation Links */}
+            <nav className="px-4 py-6">
+              <ul className="space-y-1">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center justify-between px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                        pathname === link.href
+                          ? "text-slate-gray-900 bg-earth-yellow-100 border-l-4 border-earth-yellow-500"
+                          : "text-gray-700 hover:bg-gray-50"
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      {link.hasSubmenu && (
+                        <LuChevronDown className="w-4 h-4 text-gray-400" />
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Header (visible on mobile only) */}
+      <div className="lg:hidden bg-white border-b border-gray-200 px-4 py-4 order-1 sticky top-0 z-40">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src={Logo}
+              alt="Riviera Homes"
+              width={80}
+              height={70}
+              className="w-10 h-10"
+            />
+          </Link>
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            className="p-2 bg-slate-gray-500 rounded-lg hover:bg-slate-gray-800 transition-colors"
+            aria-label="Open menu"
+          >
+            <LuMenu className="w-6 h-6 text-white" />
+          </button>
+        </div>
+      </div>
+
+      <div className="flex-1 bg-white flex flex-col justify-center px-4 sm:px-6 md:px-8 lg:px-16 py-12 lg:py-0 order-3 lg:order-1">
         <div className="max-w-lg mx-auto lg:mx-0">
-          <div className="mb-6 lg:mb-8">
+          <div className="mb-6 lg:mb-8 hidden lg:block">
             <Image
               src={Logo}
               alt="Riviera Homes"
@@ -22,7 +129,7 @@ export default function Hero() {
             />
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 lg:mb-6 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-black mb-4 lg:mb-6 leading-tight">
             We help you find your{" "}
             <span className="italic relative">
               perfect
@@ -94,7 +201,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="flex-1 relative bg-linear-to-br from-navy-900 via-navy-800 to-navy-700 min-h-[35vh] lg:min-h-screen order-1 lg:order-2">
+      <div className="flex-1 relative bg-linear-to-br from-navy-900 via-navy-800 to-navy-700 min-h-[40vh] lg:min-h-screen order-2 lg:order-2">
         <div
           className="absolute inset-0 opacity-80"
           style={{
@@ -104,21 +211,41 @@ export default function Hero() {
           }}
         />
 
-        <nav className="relative z-10 p-4 sm:p-6 lg:p-8">
-          <div className="flex items-center justify-between gap-4 sm:gap-8">
-            <div></div>
-
-            <div className="flex items-center gap-4 sm:gap-8">
-              <Link
-                href="/about-us"
-                className="text-white hover:text-gold-400 font-medium transition-colors text-sm sm:text-base"
-              >
-                About us
-              </Link>
-              <button className="lg:hidden bg-white/20 backdrop-blur-sm rounded-lg p-2">
-                <LuMenu className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
-              </button>
-            </div>
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:block relative z-10 p-4 sm:p-6 lg:p-8">
+          <div className="flex items-center justify-end gap-8">
+            <Link
+              href="/"
+              className={`text-white hover:text-gold-400 font-medium transition-colors ${
+                pathname === "/" ? "text-gold-400" : ""
+              }`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/about-us"
+              className={`text-white hover:text-gold-400 font-medium transition-colors ${
+                pathname === "/about-us" ? "text-gold-400" : ""
+              }`}
+            >
+              About us
+            </Link>
+            <Link
+              href="/properties"
+              className={`text-white hover:text-gold-400 font-medium transition-colors ${
+                pathname === "/properties" ? "text-gold-400" : ""
+              }`}
+            >
+              Properties
+            </Link>
+            <Link
+              href="/contact"
+              className={`text-white hover:text-gold-400 font-medium transition-colors ${
+                pathname === "/contact" ? "text-gold-400" : ""
+              }`}
+            >
+              Contact
+            </Link>
           </div>
         </nav>
 
