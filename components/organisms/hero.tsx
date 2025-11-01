@@ -10,7 +10,17 @@ import { usePathname } from "next/navigation";
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const pathname = usePathname();
+
+  // Slider images
+  const sliderImages = [
+    "/luxury-modern-apartment.png",
+    "/modern-luxury-apartment-interior-with-city-view.jpg",
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2100&q=80",
+    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=2100&q=80",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2100&q=80",
+  ];
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -24,12 +34,35 @@ export default function Hero() {
     };
   }, [mobileMenuOpen]);
 
+  // Auto-play slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [sliderImages.length]);
+
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about-us", label: "About Us" },
     { href: "/properties", label: "Properties", hasSubmenu: true },
     { href: "/contact", label: "Contact Us" },
   ];
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + sliderImages.length) % sliderImages.length
+    );
+  };
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row relative">
@@ -50,9 +83,9 @@ export default function Hero() {
                 <Image
                   src={Logo}
                   alt="Riviera Homes"
-                  width={50}
-                  height={50}
-                  className="w-12 h-12"
+                  width={70}
+                  height={70}
+                  className="w-16 h-16"
                 />
                 <span className="font-bold text-lg text-slate-gray-900">
                   Riviera Homes
@@ -95,15 +128,15 @@ export default function Hero() {
       )}
 
       {/* Mobile Header (visible on mobile only) */}
-      <div className="lg:hidden bg-white border-b border-gray-200 px-4 py-4 order-1 sticky top-0 z-40">
+      <div className="lg:hidden bg-white border-b border-gray-200 px-4 py-3 order-1 sticky top-0 z-40">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             <Image
               src={Logo}
               alt="Riviera Homes"
-              width={80}
-              height={70}
-              className="w-10 h-10"
+              width={100}
+              height={100}
+              className="w-16 h-16 sm:w-20 sm:h-20"
             />
           </Link>
           <button
@@ -201,15 +234,21 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="flex-1 relative bg-linear-to-br from-navy-900 via-navy-800 to-navy-700 min-h-[40vh] lg:min-h-screen order-2 lg:order-2">
-        <div
-          className="absolute inset-0 opacity-80"
-          style={{
-            backgroundImage: `url('/luxury-modern-apartment.png')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
+      <div className="flex-1 relative bg-linear-to-br from-navy-900 via-navy-800 to-navy-700 min-h-[40vh] lg:min-h-screen order-2 lg:order-2 overflow-hidden">
+        {/* Slider Images */}
+        {sliderImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? "opacity-80" : "opacity-0"
+            }`}
+            style={{
+              backgroundImage: `url('${image}')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        ))}
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:block relative z-10 p-4 sm:p-6 lg:p-8">
@@ -249,43 +288,74 @@ export default function Hero() {
           </div>
         </nav>
 
-        <div className="hidden lg:flex absolute right-8 top-1/2 transform -translate-y-1/2 flex-col items-center gap-2">
-          <svg
-            className="w-4 h-4 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        {/* Slider Navigation */}
+        <div className="hidden lg:flex absolute right-8 top-1/2 transform -translate-y-1/2 flex-col items-center gap-2 z-20">
+          <button
+            onClick={prevSlide}
+            className="p-2 hover:bg-white/10 rounded-full transition-colors"
+            aria-label="Previous slide"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 15l7-7 7 7"
-            />
-          </svg>
-          <div className="flex flex-col gap-1">
-            {[1, 2, 3, 4, 5].map((dot, index) => (
-              <div
-                key={dot}
-                className={`w-2 h-2 rounded-full ${
-                  index === 0 ? "bg-white" : "bg-white/30"
+            <svg
+              className="w-4 h-4 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 15l7-7 7 7"
+              />
+            </svg>
+          </button>
+          <div className="flex flex-col gap-2">
+            {sliderImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentSlide
+                    ? "bg-white scale-125"
+                    : "bg-white/30 hover:bg-white/50"
                 }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
-          <svg
-            className="w-4 h-4 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          <button
+            onClick={nextSlide}
+            className="p-2 hover:bg-white/10 rounded-full transition-colors"
+            aria-label="Next slide"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
+            <svg
+              className="w-4 h-4 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile Slider Dots */}
+        <div className="lg:hidden absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+          {sliderImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentSlide ? "bg-white w-8" : "bg-white/50"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
             />
-          </svg>
+          ))}
         </div>
       </div>
     </div>
