@@ -44,9 +44,11 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 mb-6 lg:mb-8">
-            <Button className="bg-black hover:bg-gray-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold w-full sm:w-auto">
-              <Link href="/about-us">About us</Link>
-            </Button>
+            <Link href="/about-us" className="w-full sm:w-auto">
+              <Button className="bg-black hover:bg-gray-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold w-full">
+                About us
+              </Button>
+            </Link>
             <div className="flex items-center justify-center sm:justify-start text-black font-semibold cursor-pointer hover:text-gray-600 transition-colors">
               Book a Call
               <svg
@@ -97,12 +99,12 @@ export default function Hero() {
 
         <nav className="relative z-10 p-4 sm:p-6 lg:p-8">
           <div className="flex items-center justify-end gap-4 sm:gap-8">
-            <a
+            <Link
               href="/about-us"
               className="text-white hover:text-gold-400 font-medium transition-colors text-sm sm:text-base"
             >
               About us
-            </a>
+            </Link>
             <button className="lg:hidden bg-white/20 backdrop-blur-sm rounded-lg p-2">
               <LuMenu className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
             </button>

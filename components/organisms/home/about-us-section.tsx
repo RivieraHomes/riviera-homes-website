@@ -1,11 +1,12 @@
 import LivingRoom from "@/assets/images/living-room.png";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AboutUsSection() {
   return (
     <section className="relative bg-white py-8 lg:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden bg-gradient-to-r from-black/80 to-black/40 min-h-[320px] lg:min-h-[500px]">
+        <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden bg-linear-to-r from-black/80 to-black/40 min-h-[320px] lg:min-h-[500px]">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -15,7 +16,7 @@ export default function AboutUsSection() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-black/20"></div>
           </div>
 
           {/* Content */}
@@ -32,9 +33,12 @@ export default function AboutUsSection() {
                 goals into reality.
               </p>
 
-              <button className="bg-transparent border-2 border-white text-white px-6 lg:px-8 py-2 lg:py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 font-medium text-sm lg:text-lg">
+              <Link
+                href="/about-us"
+                className="inline-block bg-transparent border-2 border-white text-white px-6 lg:px-8 py-2 lg:py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300 font-medium text-sm lg:text-lg"
+              >
                 See Our Mission
-              </button>
+              </Link>
             </div>
           </div>
         </div>
