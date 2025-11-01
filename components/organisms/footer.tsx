@@ -1,18 +1,14 @@
+import Logo from "@/assets/images/riviera-homes-logo.jpg";
 import Image from "next/image";
 import Link from "next/link";
+import { CiLocationOn } from "react-icons/ci";
 import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTelegramPlane,
   FaChevronRight,
+  FaInstagram,
   FaTiktok,
+  FaWhatsapp
 } from "react-icons/fa";
-import { PiPhoneThin } from "react-icons/pi";
-import { CiMail, CiLocationOn } from "react-icons/ci";
 import { MdEmail } from "react-icons/md";
-import { FaWhatsapp } from "react-icons/fa";
-import Logo from "@/assets/images/riviera-homes-logo.jpg";
 
 export interface FooterProps {
   className?: string;
@@ -37,20 +33,20 @@ export function Footer({ className }: FooterProps) {
               <Link
                 href="https://www.tiktok.com/@rivierahomes9ja?_t=ZS-90v6Oo0pewq&_r=1"
                 target="_blank"
-                className="text-[#006B05] hover:text-[#005004] transition-colors"
+                className="text-slate-gray-500 transition-colors"
               >
                 <FaTiktok size={20} />
               </Link>
               <Link
                 href="https://www.instagram.com/Rivierahomes_/"
-                className="text-[#006B05] hover:text-[#005004] transition-colors"
+                className="text-slate-gray-500 transition-colors"
                 target="_blank"
               >
                 <FaInstagram size={20} />
               </Link>
               <Link
                 href="mailto:rivierahomesltd@gmail.com"
-                className="text-[#006B05] hover:text-[#005004] transition-colors"
+                className="text-slate-gray-500 transition-colors"
               >
                 <MdEmail size={20} />
               </Link>
